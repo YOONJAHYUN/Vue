@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>고양이 늘리기</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="makeCats">고양이 늘리기</button>
+      <img
+        v-for="url in urls"
+        :key="url.id"
+        :src="`${url.url}`"
+        style="height: 300px"
+      />
+      <!-- <img :src="url" alt="" /> -->
+      <!-- </img> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          url: "",
+          urls: [],
+        },
+        methods: {
+          makeCats() {
+            const catImageSearchURL =
+              "https://api.thecatapi.com/v1/images/search";
+            axios({
+              method: "get",
+              url: catImageSearchURL,
+            }).then((response) => {
+              console.log("잘됐어용");
+              // let imgCat = response.data[0]["url"];
+              // this.url = response.data[0]["url"];
+              const { url, id } = response.data[0];
+              const data = {
+                id,
+                url,
+              };
+              this.urls.push(data);
+              // console.log(response.data[0]["url"]);
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
