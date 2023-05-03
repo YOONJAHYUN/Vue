@@ -3,7 +3,7 @@
     <h1>My first youtube project</h1>
     {{ videos }}
     <SearchBar @search-input-data="onSearchInputData" />
-    <VideoList :video-list="videos" />
+    <VideoList :videos="videos" />
     <VideoDetail />
   </div>
 </template>
