@@ -13,7 +13,9 @@ export default {
   },
   computed: {
     imgSrc() {
+      console.log(`https://www.youtube.com/embed/${this.selectedVideo.id.videoId}`)
       return `https://www.youtube.com/embed/${this.selectedVideo.id.videoId}`;
+      
     },
   },
 };
